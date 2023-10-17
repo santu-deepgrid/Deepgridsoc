@@ -29,7 +29,7 @@ if { [info exists ::env(FP_DEF_TEMPLATE)] } {
     puts_info "Custom DEF template step..."
     set var ""
     foreach pin $::env(FP_TEMPLATE_PINS) {set var "--template-pins $pin $var"}
-    manipulate_layout $script_dir/../../CustomApplyDEFTemplate/apply_def_template.py\
+    manipulate_layout $script_dir/CustomApplyDEFTemplate/apply_def_template.py\
         -indexed_log $log\
         -output_def $::env(CURRENT_DEF)\
         --def-template $::env(FP_DEF_TEMPLATE)\
