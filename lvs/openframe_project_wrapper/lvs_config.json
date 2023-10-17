@@ -1,5 +1,6 @@
 {
 	"STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+	"EXTRACT_TYPE": "ANALOG",
 	"INCLUDE_CONFIGS": [
 		"$LVS_ROOT/tech/$PDK/lvs_config.base.json"
 	],
