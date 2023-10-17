@@ -1750,8 +1750,8 @@ VIAS 6 ;
 END VIAS
 COMPONENTS 3 ;
     - mprj user_proj_timer + FIXED ( 2850000 235000 ) FN ;
-    - vccd1_connection vccd1_connection + FIXED ( 3122515 4327515 ) N ;
-    - vssd1_connection vssd1_connection + FIXED ( 3122515 2088515 ) N ;
+    - vccd1_connection vccd1_connection + FIXED ( 3122515 4327510 ) N ;
+    - vssd1_connection vssd1_connection + FIXED ( 3122515 2088510 ) N ;
 END COMPONENTS
 PINS 887 ;
     - analog_io[0] + NET analog_io[0] + DIRECTION INOUT + USE SIGNAL
