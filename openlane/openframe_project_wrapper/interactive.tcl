@@ -92,3 +92,7 @@ if { ! [ info exists ::env(ANTENNA_CHECK_CURRENT_DEF) ] } {
     set ::env(CURRENT_DEF) $::env(ANTENNA_CHECK_CURRENT_DEF)
 }
 run_antenna_check
+
+
+save_final_views
+save_final_views -save_path $save_path -tag $::env(RUN_TAG)
