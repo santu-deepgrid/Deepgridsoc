@@ -3,4 +3,7 @@
 */tmp
 */*/tmp
 venv/
+caravel/
+mgmt_core_wrapper/
+dependencies/
 __pycache__/

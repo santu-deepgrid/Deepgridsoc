@@ -1,0 +1,9 @@
+CARAVEL_ROOT: /home/marwan/openframe_timer_example/caravel
+MCW_ROOT: /home/marwan/openframe_timer_example/mgmt_core_wrapper
+PDK: sky130A
+PDK_ROOT: /home/marwan/openframe_timer_example/dependencies/pdks
+USER_PROJECT_ROOT: /home/marwan/openframe_timer_example
+caravan: false
+clk: 25
+emailto:
+- null
