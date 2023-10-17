@@ -22,13 +22,6 @@ if { ! [ info exists ::env(CTS_CURRENT_DEF) ] } {
 
 run_cts
 run_resizer_timing
-if { ! [ info exists ::env(ROUTING_CURRENT_DEF) ] } {
-    set ::env(ROUTING_CURRENT_DEF) $::env(CURRENT_DEF)
-} else {
-    set ::env(CURRENT_DEF) $::env(ROUTING_CURRENT_DEF)
-}
-run_routing
-
 if { [info exists ::env(FP_DEF_TEMPLATE)] } {
     set log [index_file $::env(floorplan_logs)/custom_apply_def_template.log]
     set def [index_file $::env(floorplan_tmpfiles)/custom_apply_def_template.def]
@@ -43,6 +36,13 @@ if { [info exists ::env(FP_DEF_TEMPLATE)] } {
         --input-lef $::env(MERGED_LEF)\
         {*}$var
 }
+if { ! [ info exists ::env(ROUTING_CURRENT_DEF) ] } {
+    set ::env(ROUTING_CURRENT_DEF) $::env(CURRENT_DEF)
+} else {
+    set ::env(CURRENT_DEF) $::env(ROUTING_CURRENT_DEF)
+}
+run_routing
+
 
 if { ! [ info exists ::env(PARSITICS_CURRENT_DEF) ] } {
     set ::env(PARSITICS_CURRENT_DEF) $::env(CURRENT_DEF)
