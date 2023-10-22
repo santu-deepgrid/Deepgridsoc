@@ -96,3 +96,6 @@ run_antenna_check
 
 save_final_views
 save_final_views -save_path $save_path -tag $::env(RUN_TAG)
+calc_total_runtime
+save_state
+generate_final_summary_report

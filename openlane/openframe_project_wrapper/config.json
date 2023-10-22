@@ -92,5 +92,6 @@
     "FP_DEF_TEMPLATE": "dir::fixed_dont_change/openframe_project_wrapper.def",
     "MACRO_PLACEMENT_CFG": "dir::macro.cfg",
     "RUN_LINTER": 0,
-    "RUN_LVS": 0
+    "RUN_LVS": 0,
+    "MAGIC_DEF_LABELS": 0
 }
