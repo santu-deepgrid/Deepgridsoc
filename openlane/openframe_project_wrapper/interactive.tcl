@@ -1,7 +1,7 @@
 package require openlane
 set script_dir [file dirname [file normalize [info script]]]
 set save_path "$script_dir/../.."
-prep -design $script_dir
+prep -design $script_dir -tag $::env(OPENLANE_RUN_TAG)
 
 if { $::env(RUN_LINTER) } {
     run_verilator
@@ -95,7 +95,7 @@ run_antenna_check
 
 
 save_final_views
-save_final_views -save_path $save_path -tag $::env(RUN_TAG)
+save_final_views -save_path $save_path -tag $::env(OPENLANE_RUN_TAG)
 calc_total_runtime
 save_state
 generate_final_summary_report

@@ -68,6 +68,9 @@ list:
 .PHONY: $(designs)
 $(designs) : % : ./%/config.json
 ifneq (,$(wildcard ./$(MAKECMDGOALS)/interactive.tcl))
+	mkdir -p ./$*/runs/$(OPENLANE_RUN_TAG) 
+	rm -rf ./$*/runs/$*
+	ln -s $$(realpath ./$*/runs/$(OPENLANE_RUN_TAG)) ./$*/runs/$*
 	$(docker_run) \
 		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd_interactive)
 else
