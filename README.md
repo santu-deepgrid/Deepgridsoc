@@ -2,6 +2,8 @@
 
 The OpenFrame Project provides an empty harness chip that differs significantly from the Caravel and Caravan designs. Unlike Caravel and Caravan, which include integrated SoCs and additional features, OpenFrame offers only the essential padframe, providing users with a clean slate for their custom designs.
 
+<img width="256" alt="Screenshot 2024-06-24 at 12 53 39 PM" src="https://github.com/efabless/openframe_timer_example/assets/67271180/ff58b58b-b9c8-4d5e-b9bc-bf344355fa80">
+
 ## Key Characteristics of OpenFrame
 
 1. **Minimalist Design:** 
@@ -26,10 +28,6 @@ The OpenFrame harness is ideal for those looking to implement custom SoCs or int
 1. 44 configurable GPIOs.
 2. User area of approximately 15mm².
 3. Supports digital, analog, or mixed-signal designs.
-
-**The following image shows the empty OpenFrame:**
-
-<img width="256" alt="Screenshot 2024-06-24 at 12 53 39 PM" src="https://github.com/efabless/openframe_timer_example/assets/67271180/ff58b58b-b9c8-4d5e-b9bc-bf344355fa80">
 
 # openframe_timer_example
 
