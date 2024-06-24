@@ -1,62 +1,77 @@
 # OpenFrame Overview
 
-The OpenFrame Project Example is a user project designed to showcase how to use the Caravel `OpenFrame` design, which is an alternative user project harness chip that differs from the Caravel and Caravan designs by:
+The OpenFrame Project provides an empty harness chip that differs significantly from the Caravel and Caravan designs. Unlike Caravel and Caravan, which include integrated SoCs and additional features, OpenFrame offers only the essential padframe, providing users with a clean slate for their custom designs.
 
-1. Having no integrated SoC on chip
-3. Allowing access to all GPIO controls
-4. Maximizing the user project area
-5. Minimizing the support circuitry to comprise only the padframe, a power-on-reset circuit, and a digital ROM containing the 32-bit project ID
+## Key Characteristics of OpenFrame
 
-The padframe design and placement of pins matches the Caravel and Caravan chips. The pin types also remain the same, with power and ground pins in the same positions, with the same power domains available. Pins which previously had functions connected with the CPU (flash controller interface, SPI interface, UART) use the same GPIO pads but allocate them to general-purpose I/O for any purpose.
+1. **Minimalist Design:** 
+   - No integrated SoC or additional circuitry.
+   - Only includes the padframe, a power-on-reset circuit, and a digital ROM containing the 32-bit project ID.
 
-One reason for choosing the Openframe harness is to implement an alternative SoC or implement an SoC with the user project integrated into the same level of hierarchy.
+2. **Padframe Compatibility:**
+   - The padframe design and pin placements match those of the Caravel and Caravan chips, ensuring compatibility and ease of transition between designs.
+   - Pin types are identical, with power and ground pins positioned similarly and the same power domains available.
 
-**Following image shows what openframe looks like when it is empty:**
+3. **Flexibility:**
+   - Provides full access to all GPIO controls.
+   - Maximizes the user project area, allowing for greater customization and integration of alternative SoCs or user-specific projects at the same hierarchy level.
 
-<img width="256" alt="Screenshot 2024-06-24 at 12 53 39 PM" src="https://github.com/efabless/openframe_timer_example/assets/67271180/ff58b58b-b9c8-4d5e-b9bc-bf344355fa80">
+4. **Simplified I/O:**
+   - Pins that previously connected to CPU functions (e.g., flash controller interface, SPI interface, UART) are now repurposed as general-purpose I/O, offering flexibility for various applications.
+
+The OpenFrame harness is ideal for those looking to implement custom SoCs or integrate user projects without the constraints of an existing SoC.
 
 ## Features
 
-1. 44 configurable GPIOs
-2. User area of ~15mm2
-3. Supports Digital, analog or mixed signal designs
+1. 44 configurable GPIOs.
+2. User area of approximately 15mm².
+3. Supports digital, analog, or mixed-signal designs.
+
+**The following image shows the empty OpenFrame:**
+
+<img width="256" alt="Screenshot 2024-06-24 at 12 53 39 PM" src="https://github.com/efabless/openframe_timer_example/assets/67271180/ff58b58b-b9c8-4d5e-b9bc-bf344355fa80">
 
 # openframe_timer_example
 
-This is a very simple example that implements a timer and connects it to the GPIOs
+This example implements a simple timer and connects it to the GPIOs.
 
-## Installation and setup
+## Installation and Setup
 
-First clone the repo
+First, clone the repository:
 
-```
+```bash
 git clone https://github.com/efabless/openframe_timer_example.git
 cd openframe_timer_example
 ```
 
-Then download all dependencies
+Then, download all dependencies:
 
-```
+```bash
 make setup
 ```
 
-## Harden the design
+## Hardening the Design
 
-In this case we are going to harden the timer, you will be hardening your own design
+In this example, we will harden the timer. You will need to harden your own design similarly.
 
-```
+```bash
 make user_proj_timer
 ```
 
-Then after you are done with hardening your design, integrate it inside the openframe wrapper
+Once you have hardened your design, integrate it into the OpenFrame wrapper:
 
-```
+```bash
 make openframe_project_wrapper
 ```
 
-## IMPORTANT NOTES
+## Important Notes
 
-1. While hardening the top level, make sure you have connected your design to power using the power pins on the wrapper
-    - You can instantiate the `vccd1_connection` and `vssd1_connection` macros that only contains the vias and nets needed to connect to power pins
-2. If you are going to flatten your design on the `openframe_project_wrapper` make sure that you don't buffer the analog pins using standard cells
-3. Make sure you run the custom step in openlane that copies the power pins from the template def, if you fail to do this the precheck will fail and your design will not be powered
+1. **Connecting to Power:**
+   - Ensure your design is connected to power using the power pins on the wrapper.
+   - Use the `vccd1_connection` and `vssd1_connection` macros, which contain the necessary vias and nets for power connections.
+
+2. **Flattening the Design:**
+   - If you plan to flatten your design within the `openframe_project_wrapper`, do not buffer the analog pins using standard cells.
+
+3. **Running Custom Steps:**
+   - Execute the custom step in OpenLane that copies the power pins from the template DEF. If this step is skipped, the precheck will fail, and your design will not be powered.
