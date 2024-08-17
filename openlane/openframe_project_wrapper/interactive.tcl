@@ -1,7 +1,7 @@
 package require openlane
 set script_dir [file dirname [file normalize [info script]]]
 set save_path "$script_dir/../.."
-prep -design $script_dir -tag $::env(OPENLANE_RUN_TAG)
+prep -design $script_dir -tag $::env(OPENLANE_RUN_TAG) -ignore_mismatches
 
 if { $::env(RUN_LINTER) } {
     run_verilator

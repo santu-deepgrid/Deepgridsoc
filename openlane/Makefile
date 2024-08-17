@@ -16,7 +16,7 @@
 MAKEFLAGS+=--warn-undefined-variables
 
 export OPENLANE_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
-OPENLANE_TAG ?= 2023.07.19
+OPENLANE_TAG ?= 2024.08.15
 OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
 designs = $(shell find * -maxdepth 0 -type d)
 current_design = null
@@ -41,6 +41,7 @@ docker_mounts = \
 	-v $$(realpath $(PWD)/..):$$(realpath $(PWD)/..) \
 	-v $(PDK_ROOT):$(PDK_ROOT) \
 	-v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
+	-v $(HOME)/.ipm:$(HOME)/.ipm \
 	-v $(OPENLANE_ROOT):/openlane
 
 docker_env = \

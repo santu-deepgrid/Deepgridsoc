@@ -44,8 +44,8 @@ export ROOTLESS
 
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT?=c887119ffa27d48613249b973a66dc667fe6ecd3
-	export OPENLANE_TAG?=2024.07.19
+	export OPEN_PDKS_COMMIT?=0fe599b2afb6708d281543108caf8310912f54af
+	export OPENLANE_TAG?=2024.08.15
 	MPW_TAG ?= mpw-9k
 
 ifeq ($(CARAVEL_LITE),1)
@@ -62,8 +62,8 @@ endif
 
 ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT?=c887119ffa27d48613249b973a66dc667fe6ecd3
-	export OPENLANE_TAG?=2024.07.19
+	export OPEN_PDKS_COMMIT?=0fe599b2afb6708d281543108caf8310912f54af
+	export OPENLANE_TAG?=2024.08.15
 	MPW_TAG ?= mpw-9k
 
 ifeq ($(CARAVEL_LITE),1)
@@ -78,9 +78,9 @@ endif
 
 endif
 
-ifeq ($(PDK),gf180mcuC)
+ifeq ($(PDK),gf180mcuD)
 
-	MPW_TAG ?= gfmpw-0b
+	MPW_TAG ?= gfmpw-1c
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel-gf180mcu
 	CARAVEL_TAG := $(MPW_TAG)
@@ -252,6 +252,7 @@ run-precheck: check-pdk check-precheck
 		docker run -it -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
 		-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
 		-v $(PDK_ROOT):$(PDK_ROOT) \
+		-v $(HOME)/.ipm:$(HOME)/.ipm \
 		-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
 		-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
 		-e PDK_ROOT=$(PDK_ROOT) \
@@ -264,6 +265,7 @@ run-precheck: check-pdk check-precheck
 		docker run -it -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
 		-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
 		-v $(PDK_ROOT):$(PDK_ROOT) \
+		-v $(HOME)/.ipm:$(HOME)/.ipm \
 		-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
 		-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
 		-e PDK_ROOT=$(PDK_ROOT) \
@@ -271,7 +273,6 @@ run-precheck: check-pdk check-precheck
 		-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
 		efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK)"; \
 	fi
-
 
 BLOCKS = $(shell cd lvs && find * -maxdepth 0 -type d)
 LVS_BLOCKS = $(foreach block, $(BLOCKS), lvs-$(block))
